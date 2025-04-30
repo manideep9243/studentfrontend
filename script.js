@@ -16,7 +16,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
   const dataContainer = document.getElementById('data-container');
   dataContainer.innerHTML = '<p>Loading...</p>';
 
-  fetch('http://localhost:3000/api/data') // Update URL if needed
+  fetch('https://studentbackend-zik7.onrender.com/api/data') // Update URL if needed
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
