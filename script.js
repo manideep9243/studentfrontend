@@ -5,7 +5,20 @@ document.getElementById('rollNumberInput').addEventListener('keydown', (event) =
   }
 });
 
-document.getElementById('searchButton').addEventListener('click', () => {
+// Debounce function to limit rapid requests
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+const handleSearch = debounce(() => {
   const rollNumber = document.getElementById('rollNumberInput').value.trim();
   const searchButton = document.getElementById('searchButton');
 
@@ -80,12 +93,16 @@ document.getElementById('searchButton').addEventListener('click', () => {
       searchButton.disabled = false;
       searchButton.textContent = 'Search';
     });
+}, 500); // 500ms debounce delay
+
+document.getElementById('searchButton').addEventListener('click', handleSearch);
 
 // Function to clean keys in the data
 function cleanKeys(obj) {
   const cleanedObj = {};
   Object.keys(obj).forEach(key => {
-    const cleanedKey = key.replace(/[^\w]/g, '').trim();
+    // Preserve underscores in field names
+    const cleanedKey = key.replace(/[^a-zA-Z0-9_]/g, '').trim();
     cleanedObj[cleanedKey] = obj[key];
   });
   return cleanedObj;
@@ -126,7 +143,7 @@ function renderTable(studentData) {
 
 // Function to calculate Pass/Fail status and SGPA
 function calculateStatusAndSGPA(studentData) {
-  const isFail = studentData.some(item => item.GRADELETTER === 'F' || item.GRADELETTER === 'ABSENT');
+  const isFail = studentData.some(item => item.GRADE_LETTER === 'F' || item.GRADE_LETTER === 'ABSENT');
   const statusElement = document.getElementById('status');
   const sgpaElement = document.getElementById('sgpa');
 
@@ -140,7 +157,7 @@ function calculateStatusAndSGPA(studentData) {
     let totalCredits = 0;
 
     studentData.forEach(item => {
-      const gradePoint = parseFloat(item.GRADEPOINT) || 0;
+      const gradePoint = parseFloat(item.GRADE_POINT) || 0;
       const credits = parseFloat(item.CREDITS) || 0;
       totalGradePoints += gradePoint * credits;
       totalCredits += credits;
