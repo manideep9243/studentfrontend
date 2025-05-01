@@ -32,7 +32,7 @@ const handleSearch = debounce(() => {
   searchButton.textContent = 'Loading...';
 
   const dataContainer = document.getElementById('data-container');
-  dataContainer.innerHTML = '<p>Loading...</p>';
+  // dataContainer.innerHTML = '<p>Loading...</p>';
 
   fetch('https://studentbackend-mq3j.onrender.com/getResults', {
     method: 'POST',
