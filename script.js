@@ -471,12 +471,13 @@ document.getElementById('searchButton').addEventListener('click', () => {
       dataContainer.innerHTML = `<p>${errorMessage}</p>`;
       document.getElementById('status').textContent = 'N/A';
       document.getElementById('sgpa').textContent = 'N/A';
-    })
-    .finally(() => {
-      // Re-enable button
-      searchButton.disabled = false;
-      searchButton.textContent = 'Search';
     });
+    // .finally(() => {
+    //   // Re-enable button
+    //   searchButton.disabled = false;
+    //   searchButton.textContent = 'Search';
+    // });
+      
 
 // Function to clean keys in the data
 function cleanKeys(obj) {
