@@ -286,11 +286,10 @@ document.getElementById('searchButton').addEventListener('click', () => {
     })
     .then(rawData => {
       console.log('Raw data:', rawData);
-
+      
       if (!rawData || rawData.length === 0) {
         dataContainer.innerHTML = '<p>No results found for the entered roll number.</p>';
         document.getElementById('status').textContent = 'N/A';
-        document.getElementById(' SjPA</p>';
         document.getElementById('sgpa').textContent = 'N/A';
         return;
       }
@@ -298,6 +297,11 @@ document.getElementById('searchButton').addEventListener('click', () => {
       // Clean the keys in the data
       const data = rawData.map(cleanKeys);
       console.log('Cleaned data:', data);
+
+      // Log the first item's keys to debug field names
+      if (data.length > 0) {
+        console.log('Keys in first cleaned item:', Object.keys(data[0]));
+      }
 
       // Render table with results
       renderTable(data);
