@@ -290,6 +290,7 @@ document.getElementById('searchButton').addEventListener('click', () => {
       if (!rawData || rawData.length === 0) {
         dataContainer.innerHTML = '<p>No results found for the entered roll number.</p>';
         document.getElementById('status').textContent = 'N/A';
+        document.getElementById(' SjPA</p>';
         document.getElementById('sgpa').textContent = 'N/A';
         return;
       }
@@ -315,6 +316,8 @@ document.getElementById('searchButton').addEventListener('click', () => {
         errorMessage = 'Server error. Please try again later.';
       }
       dataContainer.innerHTML = `<p>${errorMessage}</p>`;
+      document.getElementById('status').textContent = 'N/A';
+      document.getElementById('sgpa').textContent = 'N/A';
     });
 });
 
