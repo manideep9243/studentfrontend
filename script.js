@@ -131,7 +131,7 @@ function renderTable(studentData) {
         <td>${item.SUBCODE || 'N/A'}</td>
         <td>${item.SUBNAME || 'N/A'}</td>
         <td>${item.GRADE_LETTER || 'N/A'}</td>
-        <td>${item.GRADE_POINT || 'N/A'}</td>
+        <td>${item.GRADE_POINT || '0'}</td>
         <td>${item.CREDITS || '0'}</td>
       </tr>
     `;
